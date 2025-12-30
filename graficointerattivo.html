@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Signal / Derivative / Integral Scope</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #0b0f1a;
+      font-family: monospace;
+      color: #00ffcc;
+    }
+
+    #info {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.6);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    #value {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      min-width: 140px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div id="info">
+  Segnale: mouse Y<br>
+  Derivata: dy/dt<br>
+  Integrale: ∫y dt
+</div>
+
+<div id="value">
+  y = 0.000
+</div>
+
+<script>
+/* =======================
+   Setup canvas
+======================= */
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+/* =======================
+   Buffer segnali
+======================= */
+const signal = [];
+const derivative = [];
+const integral = [];
+let maxPoints = canvas.width;
+
+/* =======================
+   Mouse
+======================= */
+let mouseY = canvas.height / 2;
+let prevMouseY = mouseY;
+
+window.addEventListener("mousemove", e => {
+  mouseY = e.clientY;
+});
+
+/* =======================
+   Valore normalizzato
+======================= */
+let signalValue = 0;
+let integralValue = 0;
+
+/* =======================
+   Update segnali
+======================= */
+function updateSignal() {
+  const centerY = canvas.height / 2;
+
+  // Segnale normalizzato (-1 .. +1)
+  signalValue = (centerY - mouseY) / centerY;
+  signalValue = Math.max(-1, Math.min(1, signalValue));
+
+  /* --- Segnale principale --- */
+  signal.push(mouseY);
+  if (signal.length > maxPoints) signal.shift();
+
+  /* --- Derivata temporale --- */
+  const dy = prevMouseY - mouseY; // positivo verso l'alto
+  prevMouseY = mouseY;
+
+  const derivCenterY = canvas.height * 0.25;
+  const derivGain = 2.5;
+
+  const derivY = derivCenterY - dy * derivGain;
+  derivative.push(derivY);
+  if (derivative.length > maxPoints) derivative.shift();
+
+  /* --- Integrale temporale --- */
+  const integralCenterY = canvas.height * 0.75;
+  const integralGain = 0.05;
+
+  const integralMax = 3000; // massimo valore accumulato
+  const integralMin = -3000; // minimo valore accumulato
+
+	// constrain
+  integralValue = Math.max(integralMin, Math.min(integralMax, integralValue));
+
+
+  integralValue += centerY - mouseY;
+  const integralY = integralCenterY - integralValue * integralGain;
+  
+
+
+
+  integral.push(integralY);
+  if (integral.length > maxPoints) integral.shift();
+
+  document.getElementById("value").textContent =
+    `y = ${signalValue.toFixed(3)}`;
+}
+
+/* =======================
+   Grid + assi
+======================= */
+function drawGrid() {
+  ctx.lineWidth = 1;
+
+  // Grid
+  ctx.strokeStyle = "rgba(0,255,200,0.08)";
+  for (let y = 0; y < canvas.height; y += 50) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+    ctx.stroke();
+  }
+
+  for (let x = 0; x < canvas.width; x += 100) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+    ctx.stroke();
+  }
+
+  // Zero segnale principale
+  ctx.strokeStyle = "rgba(0,255,200,0.3)";
+  ctx.beginPath();
+  ctx.moveTo(0, canvas.height / 2);
+  ctx.lineTo(canvas.width, canvas.height / 2);
+  ctx.stroke();
+
+  // Zero derivata
+  ctx.strokeStyle = "rgba(255,204,0,0.3)";
+  ctx.beginPath();
+  ctx.moveTo(0, canvas.height * 0.25);
+  ctx.lineTo(canvas.width, canvas.height * 0.25);
+  ctx.stroke();
+
+  // Zero integrale
+  ctx.strokeStyle = "rgba(255,102,255,0.3)";
+  ctx.beginPath();
+  ctx.moveTo(0, canvas.height * 0.75);
+  ctx.lineTo(canvas.width, canvas.height * 0.75);
+  ctx.stroke();
+}
+
+/* =======================
+   Disegno segnali
+======================= */
+function drawSignal() {
+  ctx.beginPath();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "#00ffcc";
+
+  signal.forEach((y, i) => {
+    if (i === 0) ctx.moveTo(i, y);
+    else ctx.lineTo(i, y);
+  });
+
+  ctx.stroke();
+}
+
+function drawDerivative() {
+  ctx.beginPath();
+  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = "#ffcc00";
+
+  derivative.forEach((y, i) => {
+    if (i === 0) ctx.moveTo(i, y);
+    else ctx.lineTo(i, y);
+  });
+
+  ctx.stroke();
+}
+
+function drawIntegral() {
+  ctx.beginPath();
+  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = "#ff66ff";
+
+  integral.forEach((y, i) => {
+    if (i === 0) ctx.moveTo(i, y);
+    else ctx.lineTo(i, y);
+  });
+
+  ctx.stroke();
+}
+
+/* =======================
+   Animazione
+======================= */
+function animate() {
+  ctx.fillStyle = "rgba(11, 15, 26, 0.25)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  drawGrid();
+  updateSignal();
+  drawSignal();
+  drawDerivative();
+  drawIntegral();
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
