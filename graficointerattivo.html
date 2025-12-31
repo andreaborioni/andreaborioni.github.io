@@ -12,27 +12,59 @@
       color: #00ffcc;
     }
 
-    #info {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.6);
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-    }
+	#info {
+		position: fixed;
+		top: 10px;
+		left: 50%;                   /* centro orizzontale */
+		transform: translateX(-50%); /* trasla il div di metà larghezza */
+		background: rgba(0,0,0,0.6);
+		padding: 10px 14px;
+		border-radius: 8px;
+		font-size: 18px;
+		text-align: center;           /* centra testo interno */
+	}
 
-    #value {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: rgba(0,0,0,0.6);
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      min-width: 140px;
-      text-align: right;
-    }
+
+	#value {
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		background: rgba(0,0,0,0.6);
+		padding: 10px 14px;
+		border-radius: 8px;
+		font-size: 14px;
+		min-width: 140px;
+		text-align: right;
+	}
+
+	#description {
+		position: fixed;
+		bottom: 10px;              /* in basso */
+		left: 50%;                 /* centro orizzontale */
+		transform: translateX(-50%);
+		background: rgba(0,0,0,0.6);
+		padding: 10px 14px;
+		border-radius: 8px;
+		font-size: 16px;
+		text-align: center;        /* centra testo interno */
+		color: white;              /* testo bianco */
+		max-width: 90%;            /* evita di uscire dallo schermo */
+	}
+
+
+	.signal {
+	  color: #00ffcc;   /* stesso colore del segnale */
+	}
+
+	.derivative {
+	  color: #ffcc00;   /* stesso colore della derivata */
+	}
+
+	.integral {
+	  color: #ff66ff;   /* stesso colore dell'integrale */
+	}
+
+
   </style>
 </head>
 <body>
@@ -40,13 +72,18 @@
 <canvas id="canvas"></canvas>
 
 <div id="info">
-  Segnale: mouse Y<br>
-  Derivata: dy/dt<br>
-  Integrale: ∫y dt
+  <span class="signal">Segnale: mouse Y</span><br>
+  <span class="derivative">Derivata: dy/dt</span><br>
+  <span class="integral">Integrale: ∫y dt</span>
 </div>
 
 <div id="value">
   y = 0.000
+</div>
+
+
+<div id="description">
+  questo semplice programma mostra il comportamento della derivata e dell'integrale di una funzione generata istante per istante con il mouse.
 </div>
 
 <script>
@@ -91,46 +128,45 @@ let integralValue = 0;
    Update segnali
 ======================= */
 function updateSignal() {
-  const centerY = canvas.height / 2;
+	const centerY = canvas.height / 2;
 
-  // Segnale normalizzato (-1 .. +1)
-  signalValue = (centerY - mouseY) / centerY;
-  signalValue = Math.max(-1, Math.min(1, signalValue));
+	// Segnale normalizzato (-1 .. +1)
+	signalValue = (centerY - mouseY) / centerY;
+	signalValue = Math.max(-1, Math.min(1, signalValue));
 
-  /* --- Segnale principale --- */
-  signal.push(mouseY);
-  if (signal.length > maxPoints) signal.shift();
+	/* --- Segnale principale --- */
+	signal.push(mouseY);
+	if (signal.length > maxPoints) signal.shift();
 
-  /* --- Derivata temporale --- */
-  const dy = prevMouseY - mouseY; // positivo verso l'alto
-  prevMouseY = mouseY;
+	/* --- Derivata temporale --- */
+	const dy = prevMouseY - mouseY; // positivo verso l'alto
+	prevMouseY = mouseY;
 
-  const derivCenterY = canvas.height * 0.25;
-  const derivGain = 2.5;
+	const derivCenterY = canvas.height * 0.25;
+	const derivGain = 2.5;
 
-  const derivY = derivCenterY - dy * derivGain;
-  derivative.push(derivY);
-  if (derivative.length > maxPoints) derivative.shift();
+	const derivY = derivCenterY - dy * derivGain;
+	derivative.push(derivY);
+	if (derivative.length > maxPoints) derivative.shift();
 
-  /* --- Integrale temporale --- */
-  const integralCenterY = canvas.height * 0.75;
-  const integralGain = 0.05;
+	/* --- Integrale temporale --- */
+	const integralCenterY = canvas.height * 0.75;
+	const integralGain = 0.05;
 
-  const integralMax = 3000; // massimo valore accumulato
-  const integralMin = -3000; // minimo valore accumulato
+	const integralMax = 3000;
+	const integralMin = -3000;
 
-	// constrain
-  integralValue = Math.max(integralMin, Math.min(integralMax, integralValue));
+	// integrazione
+	integralValue += centerY - mouseY;
 
+	// saturazione (hard clamp)
+	integralValue = Math.max(integralMin, Math.min(integralMax, integralValue));
 
-  integralValue += centerY - mouseY;
-  const integralY = integralCenterY - integralValue * integralGain;
-  
+	const integralY = integralCenterY - integralValue * integralGain;
 
+	integral.push(integralY);
+	if (integral.length > maxPoints) integral.shift();
 
-
-  integral.push(integralY);
-  if (integral.length > maxPoints) integral.shift();
 
   document.getElementById("value").textContent =
     `y = ${signalValue.toFixed(3)}`;
