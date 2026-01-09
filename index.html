@@ -27,10 +27,39 @@
             padding: 8px 16px;
             border-radius: 6px;
             transition: background-color 0.3s;
+            display: block;
         }
 
         nav a:hover {
             background-color: #0f1a3d;
+        }
+
+        /* Contenitore dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        /* Menu a tendina */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #01010a;
+            min-width: 200px;
+            border-radius: 6px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            padding: 10px 16px;
+            font-size: 16px;
+        }
+
+        /* Mostra il menu al passaggio del mouse */
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
 
         /* Contenuto principale */
@@ -47,9 +76,15 @@
     <!-- Menu in alto -->
     <nav>
         <a href="index.html">Home</a>
-        <a href="progetti.html">Progetti</a>
+
+        <div class="dropdown">
+            <a href="progetti.html">Progetti</a>
+            <div class="dropdown-content">
+                <a href="graficointerattivo.html">Grafico Interattivo</a>
+            </div>
+        </div>
+
         <a href="curriculum.html">Curriculum</a>
-        <a href="graficointerattivo.html">Grafico Interattivo</a>
     </nav>
 
     <!-- Home -->
