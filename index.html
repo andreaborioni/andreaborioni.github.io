@@ -47,6 +47,28 @@
         strong {
             color: #ffffff;
         }
+
+        .button-container {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ffffff;
+            color: #0f0f0f;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .button-container a:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -87,9 +109,14 @@
     <h2>Progetti</h2>
     <ul>
         <li>Progettazione firmware di un controllore di volo per droni quadricotteri</li>
-        <li>Progettazione e costruzione di un’antenna patch per trasmissione e ricezione in banda Wi-Fi (progetto pratico dell’esame di Campi Elettromagnetici 2)</li>
+        <li>Progettazione e costruzione di un’antenna patch per trasmissione e ricezione in banda Wi-Fi</li>
         <li>Progettazione di un sistema di test per dispositivi Radar (Tesi di Laurea)</li>
     </ul>
+
+    <!-- Pulsante grafico interattivo -->
+    <div class="button-container">
+        <a href="graficointerattivo.html">Grafico interattivo</a>
+    </div>
 
 </body>
 </html>
