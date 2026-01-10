@@ -8,8 +8,13 @@
             font-family: Arial, Helvetica, sans-serif;
             background-color: #0f0f0f;
             margin: 0;
-            padding: 60px;
+            padding: 60px 20px; /* padding laterale per schermi piccoli */
             color: #ffffff;
+        }
+
+        .page-container {
+            max-width: 1000px;
+            margin: 0 auto; /* centra il contenuto orizzontalmente */
         }
 
         .header {
@@ -32,16 +37,21 @@
             font-size: 34px;
         }
 
+        h2 {
+            margin-top: 50px;
+            font-size: 24px;
+        }
+
         p, li {
             font-size: 16px;
             line-height: 1.7;
             color: #e0e0e0;
-            max-width: 900px;
+            max-width: 100%; /* occupa tutta la larghezza del container */
         }
 
         ul {
             padding-left: 20px;
-            max-width: 900px;
+            max-width: 100%;
         }
 
         strong {
@@ -73,52 +83,50 @@
 </head>
 <body>
 
-    <div class="header">
-        <img src="images/fotoprofilo.jpg">
-        <div>
-            <h1>Andrea Borioni</h1>
+    <div class="page-container">
+
+        <div class="header">
+            <img src="images/fotoprofilo.jpg" alt="Foto profilo Andrea Borioni">
+            <div>
+                <h1>Andrea Borioni</h1>
+            </div>
         </div>
-    </div>
 
-	 <h2><strong>Profilo professionale</strong></h2>
-	 
-    <p>
-		Ingegnere elettronico specializzato nello sviluppo di sistemi elettronici su misura.
-		Progetto schemi elettrici e PCB, sviluppo firmware in C per microcontrollori e logica digitale in VHDL per FPGA,
-		seguendo l’intero ciclo di sviluppo, dall’idea iniziale al prototipo funzionante.
-    </p>
+        <h2><strong>Profilo professionale</strong></h2>
+        <p>
+            Ingegnere elettronico specializzato nello sviluppo di sistemi elettronici su misura.
+            Progetto schemi elettrici e PCB, sviluppo firmware in C per microcontrollori e logica digitale in VHDL per FPGA,
+            seguendo l’intero ciclo di sviluppo, dall’idea iniziale al prototipo funzionante.
+        </p>
 
+        <h2>Esperienze lavorative</h2>
+        <ul>
+            <li>Progettista elettronico Hardware e Firmware – GEB Enterprise (novembre 2024 – oggi)</li>
+        </ul>
 
+        <h2>Istruzione</h2>
+        <ul>
+            <li>Laurea Triennale in Ingegneria Elettronica – Roma Tre</li>
+            <li>Diploma Tecnico Elettronico – ITIS Giuseppe Armellini</li>
+        </ul>
 
-    <h2>Esperienze lavorative</h2>
-    <ul>
-        <li>Progettista elettronico Hardware e Firmware – GEB Enterprise (novembre 2024 – oggi)</li>
-    </ul>
+        <h2>Competenze personali</h2>
+        <ul>
+            <li><strong>Lingue:</strong> Italiano (madrelingua), Inglese (B1)</li>
+            <li><strong>Patente di guida:</strong> B</li>
+        </ul>
 
+        <h2>Progetti</h2>
+        <ul>
+            <li>Progettazione firmware di un controllore di volo per droni quadricotteri</li>
+            <li>Progettazione e costruzione di un’antenna patch per trasmissione e ricezione in banda Wi-Fi</li>
+            <li>Progettazione di un sistema di test per dispositivi Radar (Tesi di Laurea)</li>
+        </ul>
 
+        <div class="button-container">
+            <a href="graficointerattivo.html">Grafico interattivo</a>
+        </div>
 
-    <h2>Istruzione</h2>
-    <ul>
-        <li>Laurea Triennale in Ingegneria Elettronica – Roma Tre</li>
-        <li>Diploma Tecnico Elettronico – ITIS Giuseppe Armellini</li>
-    </ul>
-
-    <h2>Competenze personali</h2>
-    <ul>
-        <li><strong>Lingue:</strong> Italiano (madrelingua), Inglese (B1)</li>
-        <li><strong>Patente di guida:</strong> B</li>
-    </ul>
-
-    <h2>Progetti</h2>
-    <ul>
-        <li>Progettazione firmware di un controllore di volo per droni quadricotteri</li>
-        <li>Progettazione e costruzione di un’antenna patch per trasmissione e ricezione in banda Wi-Fi</li>
-        <li>Progettazione di un sistema di test per dispositivi Radar (Tesi di Laurea)</li>
-    </ul>
-
-    <!-- Pulsante grafico interattivo -->
-    <div class="button-container">
-        <a href="graficointerattivo.html">Grafico interattivo</a>
     </div>
 
 </body>
