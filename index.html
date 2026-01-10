@@ -2,95 +2,104 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>CV - Andrea Borioni</title>
     <style>
         body {
-            margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #010117; /* blu scuro quasi nero */
+            background-color: #0f0f0f;
+            margin: 0;
+            padding: 60px;
             color: #ffffff;
         }
 
-        /* Barra di navigazione */
-        nav {
+        .header {
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 20px;
-            background-color: #01010a;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: background-color 0.3s;
-            display: block;
-        }
-
-        nav a:hover {
-            background-color: #0f1a3d;
-        }
-
-        /* Contenitore dropdown */
-        .dropdown {
-            position: relative;
-        }
-
-        /* Menu a tendina */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #01010a;
-            min-width: 200px;
-            border-radius: 6px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            padding: 10px 16px;
-            font-size: 16px;
-        }
-
-        /* Mostra il menu al passaggio del mouse */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Contenuto principale */
-        .container {
-            display: flex;
-            justify-content: center;
             align-items: center;
-            height: calc(100vh - 80px);
+            margin-bottom: 40px;
+        }
+
+        .header img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 30px;
+            border: 3px solid #ffffff;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 34px;
+        }
+
+        h2 {
+            margin-top: 50px;
+            font-size: 22px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 6px;
+        }
+
+        p, li {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #e0e0e0;
+            max-width: 900px;
+        }
+
+        ul {
+            padding-left: 20px;
+            max-width: 900px;
+        }
+
+        strong {
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
 
-    <!-- Menu in alto -->
-    <nav>
-        <a href="index.html">Home</a>
-
-        <div class="dropdown">
-            <a href="progetti.html">Progetti</a>
-            <div class="dropdown-content">
-                <a href="graficointerattivo.html">Grafico Interattivo</a>
-            </div>
+    <div class="header">
+        <img src="foto.jpg" alt="Foto Andrea Borioni">
+        <div>
+            <h1>Andrea Borioni</h1>
+            <p><strong>Profilo professionale</strong></p>
         </div>
-
-        <a href="curriculum.html">Curriculum</a>
-    </nav>
-
-    <!-- Home -->
-    <div class="container">
-        <!-- Nessuna immagine centrale -->
     </div>
+
+    <p>
+        Ingegnere elettronico specializzato nello sviluppo di sistemi elettronici su misura.
+        Mi occupo della progettazione logica in VHDL per FPGA, dello sviluppo del firmware
+        per microcontrollori, della realizzazione degli schemi elettrici e del design dei PCB,
+        seguendo l’intero ciclo di sviluppo, dall’idea al prototipo funzionale.
+    </p>
+
+    <h2>Esperienze lavorative</h2>
+    <p>
+        <strong>Progettista elettronico Hardware e Firmware</strong><br>
+        GEB Enterprise (novembre 2024 – oggi)
+    </p>
+
+    <h2>Istruzione</h2>
+    <ul>
+        <li>Laurea Triennale in Ingegneria Elettronica – Roma Tre</li>
+        <li>Diploma Tecnico Elettronico – ITIS Giuseppe Armellini</li>
+    </ul>
+
+    <h2>Competenze personali</h2>
+    <ul>
+        <li><strong>Lingue:</strong> Italiano (madrelingua), Inglese (B1)</li>
+        <li><strong>Patente di guida:</strong> B</li>
+    </ul>
+
+    <h2>Data di nascita</h2>
+    <p>25/12/1997</p>
+
+    <h2>Progetti</h2>
+    <ul>
+        <li>Progettazione firmware di un controllore di volo per droni quadricotteri</li>
+        <li>Progettazione e costruzione di un’antenna patch per trasmissione e ricezione in banda Wi-Fi (progetto pratico dell’esame di Campi Elettromagnetici 2)</li>
+        <li>Progettazione di un sistema di test per dispositivi Radar (Tesi di Laurea)</li>
+    </ul>
 
 </body>
 </html>
