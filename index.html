@@ -1,111 +1,129 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>CV - Andrea Borioni</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 60px 20px; /* padding laterale per schermi piccoli */
-            color: #ffffff;
+	<meta charset="UTF-8">
+	<title>CV - Andrea Borioni</title>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			margin: 0;
+			padding: 60px 0px; /* padding laterale per schermi piccoli */
+			color: #ffffff;
 			
-				background: #202020 url("images/pcb.png") no-repeat top right;
-				background-size: 300px auto; /* regola la dimensione */
-        }
+			background: #000000;
+		}
 
-        .page-container {
-            max-width: 1000px;
-            margin: 0 auto; /* centra il contenuto orizzontalmente */
-        }
+		.page-container {
+			max-width: 1000px;
+			margin: 0 auto; /* centra il contenuto orizzontalmente */
+		}
 
-        .header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 40px;
-        }
+		.header {
+			display: flex;
+			align-items: center;
+			margin-bottom: 40px;
+		}
 
-        .header img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-right: 30px;
-            border: 3px solid #ffffff;
-        }
+		.header img {
+         width: 150px;
+         height: 150px;
+         object-fit: cover;
+         border-radius: 50%;
+         margin-right: 30px;
+         border: solid #ffffff;
+      }
+		  
+		.bg-pcb {
+			position: fixed;       /* resta fisso mentre scrolli */
+			top: 0px;
+			right: 0px;
+			width: 400px;
+			height: 400px;
+			background-image: url("images/pcb.png");
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+			opacity: 1;          /* leggermente più visibile */
+			pointer-events: none;   /* non interferisce con clic */
+			z-index: 0;            /* sopra lo sfondo nero ma sotto il contenuto */
+			margin: 0;
+		}
 
-        h1 {
-            margin: 0;
-            font-size: 34px;
-        }
 
-        h2 {
-            margin-top: 50px;
-            font-size: 24px;
-        }
-
-        p, li {
-            font-size: 16px;
-            line-height: 1.7;
-            
-            max-width: 100%; /* occupa tutta la larghezza del container */
-        }
-
-        ul {
-            padding-left: 20px;
-            max-width: 100%;
-        }
+		h1 {
+			margin: 0;
+			font-size: 34px;
+		}
+		
+		h2 {
+			margin-top: 50px;
+			font-size: 24px;
+		}
+		
+		p, li {
+			font-size: 16px;
+			line-height: 1.7;
+			
+			max-width: 100%; /* occupa tutta la larghezza del container */
+		}
+		
+		ul {
+			padding-left: 20px;
+			max-width: 100%;
+		}
 
 
     </style>
 </head>
 <body>
 
-    <div class="page-container">
+	<div class="bg-pcb"></div>
 
-        <div class="header">
-            <img src="images/fotoprofilo.jpg" alt="Foto profilo Andrea Borioni">
-            <div>
-                <h1>Andrea Borioni</h1>
-            </div>
-        </div>
+   <div class="page-container">
 
-        <h2><strong>Profilo professionale</strong></h2>
-        <p>
-            Ingegnere elettronico specializzato nello sviluppo di sistemi elettronici su misura.<br>
-            Progetto schemi elettrici e PCB, sviluppo firmware in C per microcontrollori e logica digitale in VHDL per FPGA,<br>
-            seguendo l’intero ciclo di sviluppo, dall’idea iniziale al prototipo funzionante.
-        </p>
+      <div class="header">
+			<img src="images/fotoprofilo.jpg" alt="Foto profilo Andrea Borioni">
+         <div>
+				<h1>Andrea Borioni</h1>
+         </div>
+		</div>
 
-        <h2>Esperienze lavorative</h2>
-        <ul>
-            <li>Progettista elettronico Hardware e Firmware – GEB Enterprise (novembre 2024 – oggi)</li>
-        </ul>
-
-        <h2>Istruzione</h2>
-        <ul>
-            <li>Laurea Triennale in Ingegneria Elettronica – Roma Tre</li>
-            <li>Diploma Tecnico Elettronico – ITIS Giuseppe Armellini</li>
-        </ul>
-
-        <h2>Competenze personali</h2>
-        <ul>
-            <li><strong>Lingue:</strong> Italiano (madrelingua), Inglese (B1)</li>
-            <li><strong>Patente di guida:</strong> B</li>
-        </ul>
-
-        <h2>Progetti</h2>
-        <ul>
-            <li>Progettazione firmware di un controllore di volo per droni quadricotteri</li>
-            <li>Progettazione e costruzione di un’antenna patch per trasmissione e ricezione in banda Wi-Fi</li>
-            <li>Progettazione di un sistema di test per dispositivi Radar (Tesi di Laurea)</li>
-        </ul>
-		  
-		  <h2>Altro</h2>
-		  <ul>
-				<li><a href="graficointerattivo.html">derivata e integrale di una funzione interattiva</a></li>
-        </ul>
-
+		<h2><strong>Profilo professionale</strong></h2>
+		<p>
+			Ingegnere elettronico specializzato nello sviluppo di sistemi elettronici su misura.<br>
+			Progetto schemi elettrici e PCB, sviluppo firmware in C per microcontrollori e logica digitale in VHDL per FPGA,<br>
+			seguendo l’intero ciclo di sviluppo, dall’idea iniziale al prototipo funzionante.
+		</p>
+		
+		<h2>Esperienze lavorative</h2>
+		<ul>
+			<li>Progettista elettronico Hardware e Firmware – GEB Enterprise (novembre 2024 – oggi)</li>
+		</ul>
+		
+		<h2>Istruzione</h2>
+		<ul>
+			<li>Laurea Triennale in Ingegneria Elettronica – Roma Tre</li>
+			<li>Diploma Tecnico Elettronico – ITIS Giuseppe Armellini</li>
+		</ul>
+		
+		<h2>Competenze personali</h2>
+		<ul>
+			<li><strong>Lingue:</strong> Italiano (madrelingua), Inglese (B1)</li>
+			<li><strong>Patente di guida:</strong> B</li>
+		</ul>
+		
+		<h2>Progetti</h2>
+		<ul>
+			<li>Progettazione firmware di un controllore di volo per droni quadricotteri</li>
+			<li>Progettazione e costruzione di un’antenna patch per trasmissione e ricezione in banda Wi-Fi</li>
+			<li>Progettazione di un sistema di test per dispositivi Radar (Tesi di Laurea)</li>
+		</ul>
+		
+		<h2>Altro</h2>
+		<ul>
+			<li><a href="graficointerattivo.html">derivata e integrale di una funzione interattiva</a></li>
+		</ul>
+		
     </div>
 
 </body>
