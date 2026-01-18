@@ -39,9 +39,8 @@
 			right: 0px;
 			width: 400px;
 			height: 400px;
-			background-image: url("images/pcb.png");
 			background-repeat: no-repeat;
-			background-size: cover;
+			background-size: contain;
 			background-position: center;
 			opacity: 1;          /* leggermente più visibile */
 			pointer-events: none;   /* non interferisce con clic */
@@ -71,13 +70,37 @@
 			padding-left: 20px;
 			max-width: 100%;
 		}
+		
+		
+		/*cambia colore al testo dei link*/
+		a {
+			 color: #7fd3ff;          /* azzurro chiaro */
+			 /*text-decoration: none;*/  /* opzionale: rimuove la sottolineatura */
+		}
+
+		a:visited {
+			 color: #7fd3ff;          /* stesso colore dopo il click */
+		}
+
+		a:hover {
+			 color: #a6e4ff;          /* leggermente più chiaro al passaggio del mouse */
+			 text-decoration: underline; /* opzionale */
+		}
+
+		a:active {
+			 color: #7fd3ff;
+		}
 
 
     </style>
 </head>
 <body>
 
-	<div class="bg-pcb"></div>
+	<div class="bg-pcb">
+		<img src="images/pcb.png" alt="PCB">
+	</div>
+	
+	
 
    <div class="page-container">
 
